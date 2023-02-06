@@ -2,6 +2,8 @@ package com.durgesh.fullstackapplication.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 
 public class User {
@@ -23,8 +25,30 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
+    @Transient
+    private String passwordConfirm;
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    @ManyToMany
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     public long getId() {
-        return id;
+         return id;
     }
 
     public void setId(long id) {
